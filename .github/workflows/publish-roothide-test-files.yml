@@ -1,0 +1,46 @@
+name: Publish RootHide compatibility files
+
+on:
+  push:
+    branches:
+      - publish-roothide-test-files
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      RELEASE_TAG: roothide-test-20260804
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download successful build artifacts
+        run: |
+          mkdir -p out/trollstore out/kazumi
+          gh run download 30869540868 \
+            --repo "$GITHUB_REPOSITORY" \
+            --name TrollStoreLite-roothide-container-fix \
+            --dir out/trollstore
+          gh run download 30870946346 \
+            --repo "$GITHUB_REPOSITORY" \
+            --name Kazumi-2.2.6-roothide-pathfix1 \
+            --dir out/kazumi
+          find out -type f -maxdepth 3 -print
+
+      - name: Publish permanent release links
+        run: |
+          if gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release upload "$RELEASE_TAG" out/trollstore/* out/kazumi/* \
+              --repo "$GITHUB_REPOSITORY" --clobber
+          else
+            gh release create "$RELEASE_TAG" out/trollstore/* out/kazumi/* \
+              --repo "$GITHUB_REPOSITORY" \
+              --target main \
+              --title "RootHide compatibility test files" \
+              --notes "RootHide test builds: TrollStore Lite data-container patch and Kazumi 2.2.6 path-provider compatibility build."
+          fi
