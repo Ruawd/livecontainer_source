@@ -1,0 +1,107 @@
+name: Build Kazumi RootHide compatibility test
+
+on:
+  push:
+    branches:
+      - build-kazumi-roothide-fix
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: macos-14
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch Kazumi 2.2.6
+        run: |
+          git clone --depth 1 --branch 2.2.6 https://github.com/Predidit/Kazumi.git Kazumi
+
+      - name: Apply RootHide compatibility and diagnostics
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          pubspec = Path('Kazumi/pubspec.yaml')
+          text = pubspec.read_text()
+          text += '''
+
+# RootHide compatibility: 2.6.0 uses direct Foundation FFI, which does not
+# resolve the application support directory correctly in this environment.
+dependency_overrides:
+  path_provider_foundation: 2.5.1
+'''
+          pubspec.write_text(text)
+
+          main = Path('Kazumi/lib/main.dart')
+          text = main.read_text()
+          text = text.replace(
+              'builder: (context, child) {\n          return const StorageErrorPage();\n        }',
+              "builder: (context, child) {\n          return StorageErrorPage(initializationError: e.toString());\n        }",
+          )
+          if 'StorageErrorPage(initializationError:' not in text:
+              raise SystemExit('main.dart diagnostic patch failed')
+          main.write_text(text)
+
+          page = Path('Kazumi/lib/pages/error/storage_error_page.dart')
+          text = page.read_text()
+          text = text.replace(
+              'const StorageErrorPage({super.key});',
+              "const StorageErrorPage({super.key, this.initializationError});\n\n  final String? initializationError;",
+          )
+          old = "\n".join([
+              "final path = supportDir != null ? '$supportDir' : '未知路径';",
+              "              return GeneralErrorWidget(",
+              "                errMsg: '存储初始化错误 \\n 当前储存位置 $path \\n 尝试删除该目录以重置本地存储',",
+          ])
+          new = "\n".join([
+              "final path = supportDir != null ? '$supportDir' : '未知路径';",
+              "              final pathError = snapshot.hasError ? '${snapshot.error}' : '无';",
+              "              final home = Platform.environment['HOME'] ?? '未设置';",
+              "              return GeneralErrorWidget(",
+              "                errMsg: '存储初始化错误\\n原始错误: ${initializationError ?? \"未知\"}\\n路径: $path\\n路径错误: $pathError\\nHOME: $home',",
+          ])
+          if old not in text:
+              raise SystemExit('storage error page patch marker not found')
+          page.write_text(text.replace(old, new, 1))
+          PY
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2.16.0
+        with:
+          channel: stable
+          flutter-version-file: Kazumi/pubspec.yaml
+          cache: true
+
+      - name: Resolve dependencies
+        working-directory: Kazumi
+        run: |
+          flutter pub get
+          flutter pub deps | grep -A2 path_provider_foundation
+
+      - name: Build iOS app
+        working-directory: Kazumi
+        run: >-
+          flutter build ios --release --no-codesign
+          --dart-define=DANDANAPI_APPID=
+          --dart-define=DANDANAPI_KEY=
+          --dart-define=KAZUMI_APPID=
+          --dart-define=KAZUMI_KEY=
+
+      - name: Package IPA
+        working-directory: Kazumi
+        run: |
+          mkdir Payload
+          cp -R build/ios/iphoneos/Runner.app Payload/Runner.app
+          find Payload/Runner.app/Frameworks -type d -name "*.framework" -exec codesign --force --sign - --preserve-metadata=identifier,entitlements {} \;
+          /usr/libexec/PlistBuddy -c 'Set :CFBundleDisplayName Kazumi-RH' Payload/Runner.app/Info.plist
+          zip -q -r Kazumi_ios_2.2.6_roothide_pathfix1.ipa Payload
+
+      - name: Upload IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: Kazumi-2.2.6-roothide-pathfix1
+          path: Kazumi/Kazumi_ios_2.2.6_roothide_pathfix1.ipa
+          if-no-files-found: error
