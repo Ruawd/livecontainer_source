@@ -28,11 +28,11 @@ jobs:
           text = pubspec.read_text()
           text += '''
 
-# RootHide compatibility: 2.6.0 uses direct Foundation FFI, which does not
-# resolve the application support directory correctly in this environment.
-dependency_overrides:
-  path_provider_foundation: 2.5.1
-'''
+          # RootHide compatibility: 2.6.0 uses direct Foundation FFI, which does not
+          # resolve the application support directory correctly in this environment.
+          dependency_overrides:
+            path_provider_foundation: 2.5.1
+          '''
           pubspec.write_text(text)
 
           main = Path('Kazumi/lib/main.dart')
