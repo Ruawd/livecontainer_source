@@ -1,0 +1,89 @@
+name: Build TrollStore Lite roothide container fix
+
+on:
+  push:
+    branches:
+      - build-trollstore-roothide-fix
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: macos-14
+    env:
+      THEOS: ${{ github.workspace }}/theos
+      SDK_VERSION: "16.5"
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install build dependencies
+        run: |
+          brew install ldid xz make libarchive openssl pkg-config
+          echo "$(brew --prefix)/opt/make/libexec/gnubin" >> "$GITHUB_PATH"
+          echo "PKG_CONFIG_PATH=$(brew --prefix)/opt/openssl/lib/pkgconfig:$(brew --prefix)/opt/libarchive/lib/pkgconfig" >> "$GITHUB_ENV"
+
+      - name: Fetch TrollStore roothide source
+        run: |
+          git clone --recursive https://github.com/lansonsam/TrollStore-roothide.git TrollStore-roothide
+
+      - name: Add app data container entitlement fix
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          source = Path('TrollStore-roothide/RootHelper/main.m')
+          text = source.read_text()
+          marker = '''\t\t\tentitlementsToUse[@"jb.pmap_cs.custom_trust"] = @"PMAP_CS_APP_STORE";'''
+          replacement = marker + r'''
+
+            // RootHide TrollStore Lite can register apps as System without
+            // AppSync. Bind ordinary sandboxed apps to their real data
+            // container, otherwise Foundation may resolve an unwritable HOME.
+            NSObject *liteContainerRequired = entitlementsToUse[@"com.apple.private.security.container-required"];
+            BOOL liteNeedsContainerID = liteContainerRequired == nil ||
+                ([liteContainerRequired isKindOfClass:[NSNumber class]] && [(NSNumber *)liteContainerRequired boolValue]);
+            if (liteNeedsContainerID) {
+                BOOL noContainer = [entitlementsToUse[@"com.apple.private.security.no-container"] boolValue];
+                BOOL noSandbox = [entitlementsToUse[@"com.apple.private.security.no-sandbox"] boolValue];
+                if (!noContainer && !noSandbox) {
+                    entitlementsToUse[@"com.apple.private.security.container-required"] = bundleId;
+                }
+            }'''
+          if marker not in text:
+              raise SystemExit('patch marker not found')
+          source.write_text(text.replace(marker, replacement, 1))
+
+          control = Path('TrollStore-roothide/TrollStoreLite/control')
+          value = control.read_text().replace('Version: 2.1.1', 'Version: 2.1.1+rhcontainerfix1', 1)
+          control.write_text(value)
+          PY
+
+      - name: Set up roothide Theos
+        run: |
+          git clone --recursive https://github.com/roothide/theos.git "$THEOS"
+
+      - name: Install patched iOS SDK
+        run: |
+          mkdir -p "$THEOS/sdks"
+          git clone -n --depth=1 --filter=tree:0 https://github.com/theos/sdks.git "$RUNNER_TEMP/sdks"
+          cd "$RUNNER_TEMP/sdks"
+          git sparse-checkout set --no-cone "iPhoneOS${SDK_VERSION}.sdk"
+          git checkout
+          cp -r "iPhoneOS${SDK_VERSION}.sdk" "$THEOS/sdks/"
+
+      - name: Build patched deb
+        working-directory: TrollStore-roothide
+        run: |
+          make make_trollstore_lite_roothide
+          mkdir -p ../out
+          cp ./TrollStoreLite/packages/*.deb ../out/
+          ls -lh ../out
+
+      - name: Upload patched deb
+        uses: actions/upload-artifact@v4
+        with:
+          name: TrollStoreLite-roothide-container-fix
+          path: out/*.deb
+          if-no-files-found: error
