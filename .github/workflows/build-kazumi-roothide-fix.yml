@@ -26,13 +26,14 @@ jobs:
 
           pubspec = Path('Kazumi/pubspec.yaml')
           text = pubspec.read_text()
-          text += '''
-
-          # RootHide compatibility: 2.6.0 uses direct Foundation FFI, which does not
-          # resolve the application support directory correctly in this environment.
-          dependency_overrides:
-            path_provider_foundation: 2.5.1
-          '''
+          marker = 'dependency_overrides:\n'
+          if marker not in text:
+              raise SystemExit('dependency_overrides marker not found')
+          text = text.replace(
+              marker,
+              marker + '  path_provider_foundation: 2.5.1\n',
+              1,
+          )
           pubspec.write_text(text)
 
           main = Path('Kazumi/lib/main.dart')
