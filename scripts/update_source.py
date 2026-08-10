@@ -78,6 +78,42 @@ APPS = [
         "tintColor": "#10B981",
         "iconName": "kazumi.png",
     },
+    {
+        "name": "SyncClipboard",
+        "developerName": "Ruawd",
+        "repository": "Ruawd/SyncClipboard-iOS",
+        "assetPattern": r"^SyncClipboard-iOS26-unsigned\.ipa$",
+        "subtitle": "原生 SwiftUI SyncClipboard 客户端",
+        "tintColor": "#4F8EF7",
+        "iconName": "syncclipboard.png",
+    },
+    {
+        "name": "Orange Cloud",
+        "developerName": "Ruawd / chen2he",
+        "repository": "Ruawd/orange-cloud",
+        "assetPattern": r"^OrangeCloud-OpenSourceUnlocked-unsigned\.ipa$",
+        "subtitle": "原生 Cloudflare 管理客户端（开源解锁版）",
+        "tintColor": "#F97316",
+        "iconName": "orange-cloud.png",
+    },
+    {
+        "name": "KMusic（歌一刀）",
+        "developerName": "Mac-XK",
+        "repository": "Mac-XK/KMusic",
+        "assetPattern": r"^.+\.ipa$",
+        "subtitle": "基于 SwiftUI 的多源音乐聚合播放器",
+        "tintColor": "#7C3AED",
+        "iconName": "kmusic.png",
+    },
+    {
+        "name": "LK",
+        "developerName": "LK",
+        "repository": "Ruawd/livecontainer_source",
+        "assetPattern": r"^LK-[0-9].*\.ipa$",
+        "subtitle": "LK iOS 客户端",
+        "tintColor": "#16A34A",
+        "iconName": "lk.png",
+    },
 ]
 
 

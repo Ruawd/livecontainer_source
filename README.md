@@ -7,6 +7,10 @@
 - [Pikapika](https://github.com/ComicSparks/pikapika)
 - [Asspp](https://github.com/Lakr233/Asspp)
 - [Kazumi](https://github.com/Predidit/Kazumi)
+- [SyncClipboard](https://github.com/Ruawd/SyncClipboard-iOS)
+- [Orange Cloud](https://github.com/Ruawd/orange-cloud)
+- [KMusic（歌一刀）](https://github.com/Mac-XK/KMusic)
+- [LK](https://github.com/Ruawd/livecontainer_source/releases/tag/lk-0.11.51)
 
 ## 添加软件源
 

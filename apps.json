@@ -190,6 +190,114 @@
           "minOSVersion": "13.0"
         }
       ]
+    },
+    {
+      "name": "SyncClipboard",
+      "bundleIdentifier": "de.ruawd.syncclipboard",
+      "developerName": "Ruawd",
+      "subtitle": "原生 SwiftUI SyncClipboard 客户端",
+      "localizedDescription": "原生 SwiftUI SyncClipboard 客户端",
+      "version": "0.1.1",
+      "versionDate": "2026-08-06T13:50:25Z",
+      "versionDescription": "Native SwiftUI client for iOS 26 with Liquid Glass. The IPA is unsigned and must be re-signed or installed with a compatible sideloading tool.",
+      "downloadURL": "https://github.com/Ruawd/SyncClipboard-iOS/releases/download/v0.1.1/SyncClipboard-iOS26-unsigned.ipa",
+      "size": 395680,
+      "iconURL": "https://raw.githubusercontent.com/Ruawd/livecontainer_source/main/assets/icons/syncclipboard.png",
+      "tintColor": "#4F8EF7",
+      "sourceRepository": "Ruawd/SyncClipboard-iOS",
+      "versions": [
+        {
+          "version": "0.1.1",
+          "buildVersion": "2",
+          "buildNumber": "2",
+          "date": "2026-08-06T13:50:25Z",
+          "localizedDescription": "Native SwiftUI client for iOS 26 with Liquid Glass. The IPA is unsigned and must be re-signed or installed with a compatible sideloading tool.",
+          "downloadURL": "https://github.com/Ruawd/SyncClipboard-iOS/releases/download/v0.1.1/SyncClipboard-iOS26-unsigned.ipa",
+          "size": 395680,
+          "minOSVersion": "26.0"
+        }
+      ]
+    },
+    {
+      "name": "Orange Cloud",
+      "bundleIdentifier": "jiamin.chen.orange-cloud",
+      "developerName": "Ruawd / chen2he",
+      "subtitle": "原生 Cloudflare 管理客户端（开源解锁版）",
+      "localizedDescription": "原生 Cloudflare 管理客户端（开源解锁版）",
+      "version": "1.9.3",
+      "versionDate": "2026-08-08T03:55:10Z",
+      "versionDescription": "Auto-synced from chen2he/orange-cloud and built with OPENSOURCE_UNLOCKED. Unsigned IPA for self-signing.",
+      "downloadURL": "https://github.com/Ruawd/orange-cloud/releases/download/orange-cloud-unlocked-38-1/OrangeCloud-OpenSourceUnlocked-unsigned.ipa",
+      "size": 13777527,
+      "iconURL": "https://raw.githubusercontent.com/Ruawd/livecontainer_source/main/assets/icons/orange-cloud.png",
+      "tintColor": "#F97316",
+      "sourceRepository": "Ruawd/orange-cloud",
+      "versions": [
+        {
+          "version": "1.9.3",
+          "buildVersion": "38",
+          "buildNumber": "38",
+          "date": "2026-08-08T03:55:10Z",
+          "localizedDescription": "Auto-synced from chen2he/orange-cloud and built with OPENSOURCE_UNLOCKED. Unsigned IPA for self-signing.",
+          "downloadURL": "https://github.com/Ruawd/orange-cloud/releases/download/orange-cloud-unlocked-38-1/OrangeCloud-OpenSourceUnlocked-unsigned.ipa",
+          "size": 13777527,
+          "minOSVersion": "17.0"
+        }
+      ]
+    },
+    {
+      "name": "KMusic（歌一刀）",
+      "bundleIdentifier": "com.macxk.KMusic",
+      "developerName": "Mac-XK",
+      "subtitle": "基于 SwiftUI 的多源音乐聚合播放器",
+      "localizedDescription": "一款基于 SwiftUI 开发的多源音乐聚合播放器，支持 iOS/macOS 平台。",
+      "version": "2.3.0",
+      "versionDate": "2026-03-12T08:39:59Z",
+      "versionDescription": "- 优化增加各种问题",
+      "downloadURL": "https://github.com/Mac-XK/KMusic/releases/download/%E6%AD%8C%E4%B8%80%E5%88%802.3.0/_2.3.0_22.2.ipa",
+      "size": 3836900,
+      "iconURL": "https://raw.githubusercontent.com/Ruawd/livecontainer_source/main/assets/icons/kmusic.png",
+      "tintColor": "#7C3AED",
+      "sourceRepository": "Mac-XK/KMusic",
+      "versions": [
+        {
+          "version": "2.3.0",
+          "buildVersion": "22.2",
+          "buildNumber": "22.2",
+          "date": "2026-03-12T08:39:59Z",
+          "localizedDescription": "- 优化增加各种问题",
+          "downloadURL": "https://github.com/Mac-XK/KMusic/releases/download/%E6%AD%8C%E4%B8%80%E5%88%802.3.0/_2.3.0_22.2.ipa",
+          "size": 3836900,
+          "minOSVersion": "14.0"
+        }
+      ]
+    },
+    {
+      "name": "LK",
+      "bundleIdentifier": "net.lk.qingguo",
+      "developerName": "LK",
+      "subtitle": "LK iOS 客户端",
+      "localizedDescription": "LK iOS 客户端",
+      "version": "0.11.51",
+      "versionDate": "2026-08-10T00:50:51Z",
+      "versionDescription": "LK 0.11.51 IPA supplied for the LiveContainer source.\n\nSHA-256: `3c0b42ab3cdd7cefe08143ec4a95688efbca5cd67ea4d6965c51f52b2503667c`",
+      "downloadURL": "https://github.com/Ruawd/livecontainer_source/releases/download/lk-0.11.51/LK-0.11.51.ipa",
+      "size": 10775656,
+      "iconURL": "https://raw.githubusercontent.com/Ruawd/livecontainer_source/main/assets/icons/lk.png",
+      "tintColor": "#16A34A",
+      "sourceRepository": "Ruawd/livecontainer_source",
+      "versions": [
+        {
+          "version": "0.11.51",
+          "buildVersion": "191",
+          "buildNumber": "191",
+          "date": "2026-08-10T00:50:51Z",
+          "localizedDescription": "LK 0.11.51 IPA supplied for the LiveContainer source.\n\nSHA-256: `3c0b42ab3cdd7cefe08143ec4a95688efbca5cd67ea4d6965c51f52b2503667c`",
+          "downloadURL": "https://github.com/Ruawd/livecontainer_source/releases/download/lk-0.11.51/LK-0.11.51.ipa",
+          "size": 10775656,
+          "minOSVersion": "10.0"
+        }
+      ]
     }
   ]
 }
