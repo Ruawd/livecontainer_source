@@ -225,14 +225,24 @@
       "subtitle": "原生 Cloudflare 管理客户端（开源解锁版）",
       "localizedDescription": "原生 Cloudflare 管理客户端（开源解锁版）",
       "version": "1.9.3",
-      "versionDate": "2026-08-08T03:55:10Z",
+      "versionDate": "2026-08-10T04:16:54Z",
       "versionDescription": "Auto-synced from chen2he/orange-cloud and built with OPENSOURCE_UNLOCKED. Unsigned IPA for self-signing.",
-      "downloadURL": "https://github.com/Ruawd/orange-cloud/releases/download/orange-cloud-unlocked-38-1/OrangeCloud-OpenSourceUnlocked-unsigned.ipa",
-      "size": 13777527,
+      "downloadURL": "https://github.com/Ruawd/orange-cloud/releases/download/orange-cloud-unlocked-40-1/OrangeCloud-OpenSourceUnlocked-unsigned.ipa",
+      "size": 13777539,
       "iconURL": "https://raw.githubusercontent.com/Ruawd/livecontainer_source/main/assets/icons/orange-cloud.png",
       "tintColor": "#F97316",
       "sourceRepository": "Ruawd/orange-cloud",
       "versions": [
+        {
+          "version": "1.9.3",
+          "buildVersion": "38",
+          "buildNumber": "38",
+          "date": "2026-08-10T04:16:54Z",
+          "localizedDescription": "Auto-synced from chen2he/orange-cloud and built with OPENSOURCE_UNLOCKED. Unsigned IPA for self-signing.",
+          "downloadURL": "https://github.com/Ruawd/orange-cloud/releases/download/orange-cloud-unlocked-40-1/OrangeCloud-OpenSourceUnlocked-unsigned.ipa",
+          "size": 13777539,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.9.3",
           "buildVersion": "38",
