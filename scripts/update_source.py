@@ -114,6 +114,17 @@ APPS = [
         "tintColor": "#16A34A",
         "iconName": "lk.png",
     },
+    {
+        "name": "Aaalice NAI Launcher",
+        "developerName": "Aaalice / Ruawd",
+        "repository": "Ruawd/Aaalice_NAI_Launcher",
+        "assetPattern": r"^NAI_Launcher_iOS_.+_TrollStore\.ipa$",
+        "subtitle": "NovelAI 图像生成第三方客户端（iOS 测试版）",
+        "tintColor": "#8B5CF6",
+        "iconName": "nai-launcher.png",
+        "iconURL": "https://raw.githubusercontent.com/Ruawd/Aaalice_NAI_Launcher/main/assets/icons/ios/AppIcon.appiconset/icon-1024.png",
+        "includePrerelease": True,
+    },
 ]
 
 
@@ -140,20 +151,34 @@ def request_json(url: str) -> Any:
 
 def download_file(url: str, destination: Path, expected_size: int) -> None:
     last_error = ""
-    for attempt in range(1, 5):
+    destination.unlink(missing_ok=True)
+    for attempt in range(1, 9):
+        existing_size = destination.stat().st_size if destination.exists() else 0
+        if existing_size == expected_size and zipfile.is_zipfile(destination):
+            return
+        if existing_size >= expected_size:
+            destination.unlink(missing_ok=True)
+            existing_size = 0
+
         separator = "&" if "?" in url else "?"
         attempt_url = f"{url}{separator}download=1&altsource_retry={attempt}"
+        headers = {
+            "Accept": "application/octet-stream",
+            "Cache-Control": "no-cache",
+            "User-Agent": USER_AGENT,
+        }
+        if existing_size:
+            headers["Range"] = f"bytes={existing_size}-"
         request = urllib.request.Request(
             attempt_url,
-            headers={
-                "Accept": "application/octet-stream",
-                "Cache-Control": "no-cache",
-                "User-Agent": USER_AGENT,
-            },
+            headers=headers,
         )
         try:
             with urllib.request.urlopen(request, timeout=180) as response:
-                with destination.open("wb") as output:
+                # GitHub's CDN supports Range requests. If a proxy ignores the
+                # range and serves a full response, restart from byte zero.
+                resume = existing_size > 0 and response.status == 206
+                with destination.open("ab" if resume else "wb") as output:
                     shutil.copyfileobj(response, output)
             actual_size = destination.stat().st_size
             if actual_size == expected_size and zipfile.is_zipfile(destination):
@@ -166,18 +191,20 @@ def download_file(url: str, destination: Path, expected_size: int) -> None:
             )
         except Exception as error:  # noqa: BLE001 - retry transient CDN errors.
             last_error = str(error)
-        if attempt < 4:
+        if attempt < 8:
             print(f"下载校验失败，准备第 {attempt + 1} 次尝试：{last_error}", flush=True)
-            time.sleep(2**attempt)
+            time.sleep(min(2**attempt, 30))
     raise RuntimeError(f"下载 IPA 失败：{last_error}")
 
 
 def find_release_and_asset(
-    releases: list[dict[str, Any]], pattern: str
+    releases: list[dict[str, Any]], pattern: str, include_prerelease: bool = False
 ) -> tuple[dict[str, Any], dict[str, Any]]:
     asset_pattern = re.compile(pattern, re.IGNORECASE)
     for release in releases:
-        if release.get("draft") or release.get("prerelease"):
+        if release.get("draft") or (
+            release.get("prerelease") and not include_prerelease
+        ):
             continue
         for asset in release.get("assets", []):
             if asset_pattern.fullmatch(asset.get("name", "")):
@@ -460,21 +487,27 @@ def merged_version_history(
 
 
 def process_app(
-    config: dict[str, str], existing_app: dict[str, Any] | None
+    config: dict[str, Any], existing_app: dict[str, Any] | None
 ) -> tuple[dict[str, Any], bytes | None]:
     repository = config["repository"]
     repo_info = request_json(f"https://api.github.com/repos/{repository}")
     releases = request_json(
         f"https://api.github.com/repos/{repository}/releases?per_page=20"
     )
-    release, asset = find_release_and_asset(releases, config["assetPattern"])
+    release, asset = find_release_and_asset(
+        releases,
+        config["assetPattern"],
+        bool(config.get("includePrerelease")),
+    )
 
     existing_latest = ((existing_app or {}).get("versions") or [{}])[0]
     same_asset = existing_latest.get("downloadURL") == asset["browser_download_url"]
     icon_path = ICON_DIR / config["iconName"]
 
     icon_bytes: bytes | None = None
-    if same_asset and existing_app and icon_path.exists():
+    if same_asset and existing_app and (
+        icon_path.exists() or config.get("iconURL")
+    ):
         metadata = {
             "bundleIdentifier": str(existing_app["bundleIdentifier"]),
             "version": str(existing_latest["version"]),
@@ -485,10 +518,11 @@ def process_app(
             ),
             "minOSVersion": str(existing_latest.get("minOSVersion") or ""),
         }
-        current_icon = icon_path.read_bytes()
-        normalized_icon = normalize_png(current_icon)
-        if normalized_icon != current_icon:
-            icon_bytes = normalized_icon
+        if icon_path.exists():
+            current_icon = icon_path.read_bytes()
+            normalized_icon = normalize_png(current_icon)
+            if normalized_icon != current_icon:
+                icon_bytes = normalized_icon
     else:
         with tempfile.NamedTemporaryFile(suffix=".ipa", delete=False) as temp_file:
             temp_path = Path(temp_file.name)
@@ -526,8 +560,9 @@ def process_app(
         "versionDescription": latest["localizedDescription"],
         "downloadURL": asset["browser_download_url"],
         "size": int(asset["size"]),
-        "iconURL": f"{raw_base}/{config['iconName']}",
+        "iconURL": config.get("iconURL") or f"{raw_base}/{config['iconName']}",
         "tintColor": config["tintColor"],
+        "beta": bool(release.get("prerelease")),
         "sourceRepository": repository,
         "versions": versions,
     }

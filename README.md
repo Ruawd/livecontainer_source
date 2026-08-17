@@ -11,6 +11,7 @@
 - [Orange Cloud](https://github.com/Ruawd/orange-cloud)
 - [KMusic（歌一刀）](https://github.com/Mac-XK/KMusic)
 - [LK](https://github.com/Ruawd/livecontainer_source/releases/tag/lk-0.11.51)
+- [Aaalice NAI Launcher](https://github.com/Ruawd/Aaalice_NAI_Launcher)（iOS Beta）
 
 ## 添加软件源
 

@@ -19,6 +19,7 @@
       "size": 54451284,
       "iconURL": "https://raw.githubusercontent.com/Ruawd/livecontainer_source/main/assets/icons/fluxdo.png",
       "tintColor": "#2F80ED",
+      "beta": false,
       "sourceRepository": "Lingyan000/fluxdo",
       "versions": [
         {
@@ -56,6 +57,7 @@
       "size": 15574160,
       "iconURL": "https://raw.githubusercontent.com/Ruawd/livecontainer_source/main/assets/icons/jasmine.png",
       "tintColor": "#8B5CF6",
+      "beta": false,
       "sourceRepository": "ComicSparks/jasmine",
       "versions": [
         {
@@ -83,6 +85,7 @@
       "size": 17906138,
       "iconURL": "https://raw.githubusercontent.com/Ruawd/livecontainer_source/main/assets/icons/pikapika.png",
       "tintColor": "#EC4899",
+      "beta": false,
       "sourceRepository": "ComicSparks/pikapika",
       "versions": [
         {
@@ -110,6 +113,7 @@
       "size": 15162563,
       "iconURL": "https://raw.githubusercontent.com/Ruawd/livecontainer_source/main/assets/icons/asspp.png",
       "tintColor": "#F59E0B",
+      "beta": false,
       "sourceRepository": "Lakr233/Asspp",
       "versions": [
         {
@@ -137,6 +141,7 @@
       "size": 29635192,
       "iconURL": "https://raw.githubusercontent.com/Ruawd/livecontainer_source/main/assets/icons/kazumi.png",
       "tintColor": "#10B981",
+      "beta": false,
       "sourceRepository": "Predidit/Kazumi",
       "versions": [
         {
@@ -214,6 +219,7 @@
       "size": 395680,
       "iconURL": "https://raw.githubusercontent.com/Ruawd/livecontainer_source/main/assets/icons/syncclipboard.png",
       "tintColor": "#4F8EF7",
+      "beta": false,
       "sourceRepository": "Ruawd/SyncClipboard-iOS",
       "versions": [
         {
@@ -241,6 +247,7 @@
       "size": 14434693,
       "iconURL": "https://raw.githubusercontent.com/Ruawd/livecontainer_source/main/assets/icons/orange-cloud.png",
       "tintColor": "#F97316",
+      "beta": false,
       "sourceRepository": "Ruawd/orange-cloud",
       "versions": [
         {
@@ -288,6 +295,7 @@
       "size": 3836900,
       "iconURL": "https://raw.githubusercontent.com/Ruawd/livecontainer_source/main/assets/icons/kmusic.png",
       "tintColor": "#7C3AED",
+      "beta": false,
       "sourceRepository": "Mac-XK/KMusic",
       "versions": [
         {
@@ -315,6 +323,7 @@
       "size": 10775656,
       "iconURL": "https://raw.githubusercontent.com/Ruawd/livecontainer_source/main/assets/icons/lk.png",
       "tintColor": "#16A34A",
+      "beta": false,
       "sourceRepository": "Ruawd/livecontainer_source",
       "versions": [
         {
@@ -326,6 +335,34 @@
           "downloadURL": "https://github.com/Ruawd/livecontainer_source/releases/download/lk-0.11.51/LK-0.11.51.ipa",
           "size": 10775656,
           "minOSVersion": "10.0"
+        }
+      ]
+    },
+    {
+      "name": "Aaalice NAI Launcher",
+      "bundleIdentifier": "top.ruawd.nailauncher",
+      "developerName": "Aaalice / Ruawd",
+      "subtitle": "NovelAI 图像生成第三方客户端（iOS 测试版）",
+      "localizedDescription": "Aaalice的NAI启动器",
+      "version": "1.5.0",
+      "versionDate": "2026-08-14T16:43:10Z",
+      "versionDescription": "iOS/TrollStore beta 20: fixes cloud upscale reporting success while saving Sugar Cloud's HTTP 200 error JSON as a broken gallery image. Sugar Cloud's unavailable NovelAI upscale route is now disabled with a clear explanation, every upscale response is validated before registration, and all external workflow results must be real encoded images before they can enter the gallery. Official NovelAI ZIP and direct-image upscale responses remain supported.",
+      "downloadURL": "https://github.com/Ruawd/Aaalice_NAI_Launcher/releases/download/ios-v1.5.0-beta.20/NAI_Launcher_iOS_1.5.0%2B42_TrollStore.ipa",
+      "size": 232796711,
+      "iconURL": "https://raw.githubusercontent.com/Ruawd/Aaalice_NAI_Launcher/main/assets/icons/ios/AppIcon.appiconset/icon-1024.png",
+      "tintColor": "#8B5CF6",
+      "beta": true,
+      "sourceRepository": "Ruawd/Aaalice_NAI_Launcher",
+      "versions": [
+        {
+          "version": "1.5.0",
+          "buildVersion": "42",
+          "buildNumber": "42",
+          "date": "2026-08-14T16:43:10Z",
+          "localizedDescription": "iOS/TrollStore beta 20: fixes cloud upscale reporting success while saving Sugar Cloud's HTTP 200 error JSON as a broken gallery image. Sugar Cloud's unavailable NovelAI upscale route is now disabled with a clear explanation, every upscale response is validated before registration, and all external workflow results must be real encoded images before they can enter the gallery. Official NovelAI ZIP and direct-image upscale responses remain supported.",
+          "downloadURL": "https://github.com/Ruawd/Aaalice_NAI_Launcher/releases/download/ios-v1.5.0-beta.20/NAI_Launcher_iOS_1.5.0%2B42_TrollStore.ipa",
+          "size": 232796711,
+          "minOSVersion": "13.0"
         }
       ]
     }
