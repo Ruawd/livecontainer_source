@@ -395,15 +395,25 @@
       "subtitle": "NovelAI 图像生成第三方客户端（iOS 测试版）",
       "localizedDescription": "Aaalice的NAI启动器",
       "version": "1.8.1",
-      "versionDate": "2026-08-22T14:23:25Z",
+      "versionDate": "2026-08-22T14:47:01Z",
       "versionDescription": "iOS/TrollStore beta 20: fixes cloud upscale reporting success while saving Sugar Cloud's HTTP 200 error JSON as a broken gallery image. Sugar Cloud's unavailable NovelAI upscale route is now disabled with a clear explanation, every upscale response is validated before registration, and all external workflow results must be real encoded images before they can enter the gallery. Official NovelAI ZIP and direct-image upscale responses remain supported.",
-      "downloadURL": "https://github.com/Ruawd/Aaalice_NAI_Launcher/releases/download/ios-v1.8.1/NAI_Launcher_iOS_1.8.1%2B32_TrollStore.ipa",
-      "size": 234950543,
+      "downloadURL": "https://github.com/Ruawd/Aaalice_NAI_Launcher/releases/download/ios-v1.8.1-fix1/NAI_Launcher_iOS_1.8.1%2B33_TrollStore.ipa",
+      "size": 234949713,
       "iconURL": "https://raw.githubusercontent.com/Ruawd/Aaalice_NAI_Launcher/main/assets/icons/ios/AppIcon.appiconset/icon-1024.png",
       "tintColor": "#8B5CF6",
       "beta": true,
       "sourceRepository": "Ruawd/Aaalice_NAI_Launcher",
       "versions": [
+        {
+          "version": "1.8.1",
+          "buildVersion": "33",
+          "buildNumber": "33",
+          "date": "2026-08-22T14:47:01Z",
+          "localizedDescription": "iOS/TrollStore beta 20: fixes cloud upscale reporting success while saving Sugar Cloud's HTTP 200 error JSON as a broken gallery image. Sugar Cloud's unavailable NovelAI upscale route is now disabled with a clear explanation, every upscale response is validated before registration, and all external workflow results must be real encoded images before they can enter the gallery. Official NovelAI ZIP and direct-image upscale responses remain supported.",
+          "downloadURL": "https://github.com/Ruawd/Aaalice_NAI_Launcher/releases/download/ios-v1.8.1-fix1/NAI_Launcher_iOS_1.8.1%2B33_TrollStore.ipa",
+          "size": 234949713,
+          "minOSVersion": "13.0"
+        },
         {
           "version": "1.8.1",
           "buildVersion": "32",
