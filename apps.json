@@ -154,16 +154,26 @@
       "developerName": "Predidit",
       "subtitle": "基于自定义规则的番剧采集与在线观看工具",
       "localizedDescription": "基于自定义规则的番剧采集APP，支持流媒体在线观看，支持弹幕，支持实时超分辨率。",
-      "version": "2.3.3",
-      "versionDate": "2026-09-15T14:24:43Z",
-      "versionDescription": "> [!NOTE]\r\n> 这是 2.3.2 的热修复版本，更多更新日志参考 2.3.2",
-      "downloadURL": "https://github.com/Predidit/Kazumi/releases/download/2.3.3/Kazumi_ios_2.3.3_no_sign.ipa",
-      "size": 29823335,
+      "version": "2.3.4",
+      "versionDate": "2026-09-22T12:48:01Z",
+      "versionDescription": "- 重新设计的竖屏模式我的页面 (@Predidit)\r\n- 现在追番页面支持卡片样式与列表样式切换 (@Predidit)\r\n- 改进的弹幕检索流程 (@moonrailgun)\r\n- 修复 android 平台偶发的崩溃问题 (@Predidit)\r\n- 修复 macOS x64 应用界面闪烁的问题 (#2577) (@Predidit)",
+      "downloadURL": "https://github.com/Predidit/Kazumi/releases/download/2.3.4/Kazumi_ios_2.3.4_no_sign.ipa",
+      "size": 29106919,
       "iconURL": "https://raw.githubusercontent.com/Ruawd/livecontainer_source/main/assets/icons/kazumi.png",
       "tintColor": "#10B981",
       "beta": false,
       "sourceRepository": "Predidit/Kazumi",
       "versions": [
+        {
+          "version": "2.3.4",
+          "buildVersion": "20304",
+          "buildNumber": "20304",
+          "date": "2026-09-22T12:48:01Z",
+          "localizedDescription": "- 重新设计的竖屏模式我的页面 (@Predidit)\r\n- 现在追番页面支持卡片样式与列表样式切换 (@Predidit)\r\n- 改进的弹幕检索流程 (@moonrailgun)\r\n- 修复 android 平台偶发的崩溃问题 (@Predidit)\r\n- 修复 macOS x64 应用界面闪烁的问题 (#2577) (@Predidit)",
+          "downloadURL": "https://github.com/Predidit/Kazumi/releases/download/2.3.4/Kazumi_ios_2.3.4_no_sign.ipa",
+          "size": 29106919,
+          "minOSVersion": "15.0"
+        },
         {
           "version": "2.3.3",
           "buildVersion": "20303",
@@ -252,16 +262,6 @@
           "localizedDescription": "- 重新设计的设置页 (@Predidit)\r\n- 新增番剧关联选项卡 (@liangyuR)\r\n- 优化验证码规则检索速度 (@Predidit)\r\n- 现在在移动数据网络下自动启用节流模式 (@Predidit)\r\n- 优化Linux平台软件解码功能 (@Predidit)\r\n- 修复镜像模式下评论区GIF只显示第一帧的问题 (@Predidit)\r\n- 修复一起看功能在大陆地区不稳定的问题 (#2388) (@Predidit)",
           "downloadURL": "https://github.com/Predidit/Kazumi/releases/download/2.2.4/Kazumi_ios_2.2.4_no_sign.ipa",
           "size": 29243380,
-          "minOSVersion": "13.0"
-        },
-        {
-          "version": "2.2.3",
-          "buildVersion": "20203",
-          "buildNumber": "20203",
-          "date": "2026-07-23T05:09:55Z",
-          "localizedDescription": "> [!NOTE]\r\n> 这是 2.2.2 的热修复版本，更多更新日志参考 2.2.2",
-          "downloadURL": "https://github.com/Predidit/Kazumi/releases/download/2.2.3/Kazumi_ios_2.2.3_no_sign.ipa",
-          "size": 29182954,
           "minOSVersion": "13.0"
         }
       ]
