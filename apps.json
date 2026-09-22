@@ -301,15 +301,25 @@
       "subtitle": "原生 Cloudflare 管理客户端（开源解锁版）",
       "localizedDescription": "原生 Cloudflare 管理客户端（开源解锁版）",
       "version": "2.1.4",
-      "versionDate": "2026-09-21T08:11:40Z",
+      "versionDate": "2026-09-22T07:57:25Z",
       "versionDescription": "Auto-synced from chen2he/orange-cloud and built with OPENSOURCE_UNLOCKED. Unsigned IPA for self-signing.",
-      "downloadURL": "https://github.com/Ruawd/orange-cloud/releases/download/orange-cloud-unlocked-82-1/OrangeCloud-OpenSourceUnlocked-unsigned.ipa",
-      "size": 15119344,
+      "downloadURL": "https://github.com/Ruawd/orange-cloud/releases/download/orange-cloud-unlocked-83-1/OrangeCloud-OpenSourceUnlocked-unsigned.ipa",
+      "size": 15286518,
       "iconURL": "https://raw.githubusercontent.com/Ruawd/livecontainer_source/main/assets/icons/orange-cloud.png",
       "tintColor": "#F97316",
       "beta": false,
       "sourceRepository": "Ruawd/orange-cloud",
       "versions": [
+        {
+          "version": "2.1.4",
+          "buildVersion": "56",
+          "buildNumber": "56",
+          "date": "2026-09-22T07:57:25Z",
+          "localizedDescription": "Auto-synced from chen2he/orange-cloud and built with OPENSOURCE_UNLOCKED. Unsigned IPA for self-signing.",
+          "downloadURL": "https://github.com/Ruawd/orange-cloud/releases/download/orange-cloud-unlocked-83-1/OrangeCloud-OpenSourceUnlocked-unsigned.ipa",
+          "size": 15286518,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "2.1.4",
           "buildVersion": "56",
@@ -398,16 +408,6 @@
           "localizedDescription": "Auto-synced from chen2he/orange-cloud and built with OPENSOURCE_UNLOCKED. Unsigned IPA for self-signing.",
           "downloadURL": "https://github.com/Ruawd/orange-cloud/releases/download/orange-cloud-unlocked-65-1/OrangeCloud-OpenSourceUnlocked-unsigned.ipa",
           "size": 14846962,
-          "minOSVersion": "17.0"
-        },
-        {
-          "version": "2.1.1",
-          "buildVersion": "43",
-          "buildNumber": "43",
-          "date": "2026-09-03T07:24:02Z",
-          "localizedDescription": "Auto-synced from chen2he/orange-cloud and built with OPENSOURCE_UNLOCKED. Unsigned IPA for self-signing.",
-          "downloadURL": "https://github.com/Ruawd/orange-cloud/releases/download/orange-cloud-unlocked-64-1/OrangeCloud-OpenSourceUnlocked-unsigned.ipa",
-          "size": 14682272,
           "minOSVersion": "17.0"
         }
       ]
